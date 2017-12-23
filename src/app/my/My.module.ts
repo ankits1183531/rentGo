@@ -4,8 +4,8 @@ import { MyComponent } from "./my.component";
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { AuthGuard } from '../service/gaurd.service';
-import { UserdetailsComponent } from '../userdetails/userdetails.component';
 import { DataService } from '../service/data-sharing.service';
+import { UserdetailsComponent } from '../userdetails/userdetails.component'; 
 
 @NgModule({
   imports: [

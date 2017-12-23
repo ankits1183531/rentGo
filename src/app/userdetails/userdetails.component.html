@@ -1,22 +1,8 @@
 <div class="card">
-  <img src="/w3images/team2.jpg" alt="John" style="width:100%">
-  <h1>John Doe</h1>
-  <p class="title">CEO & Founder, Example</p>
-  <p>Harvard University</p>
-  <div style="margin: 24px 0;">
-    <a href="#">
-      <i class="fa fa-dribbble"></i>
-    </a>
-    <a href="#">
-      <i class="fa fa-twitter"></i>
-    </a>
-    <a href="#">
-      <i class="fa fa-linkedin"></i>
-    </a>
-    <a href="#">
-      <i class="fa fa-facebook"></i>
-    </a>
-  </div>
+  <img [src]="showDetails.ImageUrl" alt="Image" style="width:100%">
+  <h1>{{showDetails.Name}}</h1>
+  <p class="title">Software Developer</p>
+  <p>{{showDetails.Email}}</p>
   <p>
     <button>Contact</button>
   </p>

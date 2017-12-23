@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from "../service/data-sharing.service";
 
 @Component({
   selector: 'app-userdetails',
@@ -10,17 +9,15 @@ export class UserdetailsComponent implements OnInit {
 
   showDetails  = {};
 
-  constructor(
-    private data: DataService
-  ) { }
+  constructor() {
+    this.getUserDetails();
+   }
 
   ngOnInit() {
-    this.getUserDetails();
   }
 
   getUserDetails() {
-    console.log('asdsadad');
-    this.showDetails = this.data.getData();
+    this.showDetails = JSON.parse(localStorage.getItem('Details'));
     console.log(this.showDetails);
   }
 

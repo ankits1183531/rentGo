@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
         console.log('Email: ' + profile.getEmail());
 
         localStorage.setItem('access_token', googleUser.getAuthResponse().id_token);
+        localStorage.setItem('Details', JSON.stringify(userDetails));
         that.data.setData(userDetails);
         that.router.navigate(['/my']);
 
