@@ -2,6 +2,10 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../service/data-sharing.service';
 
+import { Observable } from "rxjs/Rx"
+import { Observer } from "rxjs/Observer";
+
+
 declare const gapi: any;
 
 @Component({
@@ -46,33 +50,37 @@ export class LoginComponent implements OnInit {
   }
 
   attachSignin(element) {
-    let that = this;
-    this.auth2.attachClickHandler(element, {},
+    this.sucessfullylogin(element).subscribe(
+      val => {    },
+      err => {  
+        console.log(err , 'Error');
+        },
+      () => {
+        console.log('success');
+        this.router.navigate(['/my']);
+      }
+    );
+  }
 
-      function (googleUser) {
-        let profile = googleUser.getBasicProfile();
-
-        let userDetails = {};
-        userDetails['Token'] = googleUser.getAuthResponse().id_token;
-        userDetails['ID'] = profile.getId();
-        userDetails['Name'] = profile.getName();
-        userDetails['ImageUrl'] = profile.getImageUrl();
-        userDetails['Email'] = profile.getEmail(); 
-
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-
-        localStorage.setItem('access_token', googleUser.getAuthResponse().id_token);
-        localStorage.setItem('Details', JSON.stringify(userDetails));
-        that.data.setData(userDetails);
-        that.router.navigate(['/my']);
-
-      }, function (error) {
-        console.log(JSON.stringify(error, undefined, 2));
-      });
+  sucessfullylogin(element){
+    return Observable.create((observer) => {
+      this.auth2.attachClickHandler(element, {},
+        function (googleUser) {
+          let profile = googleUser.getBasicProfile();
+          let userDetails = {};
+          userDetails['Token'] = googleUser.getAuthResponse().id_token;
+          userDetails['ID'] = profile.getId();
+          userDetails['Name'] = profile.getName();
+          userDetails['ImageUrl'] = profile.getImageUrl();
+          userDetails['Email'] = profile.getEmail();
+          localStorage.setItem('access_token', googleUser.getAuthResponse().id_token);
+          localStorage.setItem('Details', JSON.stringify(userDetails));
+          observer.complete();
+        }, function (error) {
+          console.log(JSON.stringify(error, undefined, 2));
+          observer.error();
+        });
+    });
   }
 
 }
