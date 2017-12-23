@@ -10,12 +10,12 @@ import { UserdetailsComponent } from '../userdetails/userdetails.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      {path: '' , redirectTo  : 'dashboard' , pathMatch : 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full',},
       {
-        path: '', component: MyComponent, canActivate: [AuthGuard], canDeactivate: [AuthGuard],
+        path: '', component: MyComponent, canActivate: [AuthGuard], canDeactivate: [AuthGuard], 
         children : [
-          { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashBoardModule'},
-          { path: 'detail', loadChildren: 'app/check-page/check-page.module#CheckPageModule' },
+          { path: 'dashboard', loadChildren: '../dashboard/dashboard.module#DashBoardModule'},
+          { path: 'detail', loadChildren: '../check-page/check-page.module#CheckPageModule' },
         ]
       }
     ])
