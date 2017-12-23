@@ -10,6 +10,7 @@ export class UserdetailsComponent implements OnInit {
   showDetails  = {};
 
   constructor() {
+    console.log('sadadas');
     this.getUserDetails();
    }
 
