@@ -15,7 +15,7 @@ import { UserdetailsComponent } from '../userdetails/userdetails.component';
         path: '', component: MyComponent, canActivate: [AuthGuard], canDeactivate: [AuthGuard],
         children : [
           { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashBoardModule'},
-          // { path: 'second', loadChildren: 'app/second-page/secong-page.module#SecondPageModuleComponent' },
+          { path: 'detail', loadChildren: 'app/check-page/check-page.module#CheckPageModule' },
         ]
       }
     ])
